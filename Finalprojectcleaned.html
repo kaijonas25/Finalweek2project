@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Titan Strength and Performance</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .mainContainer {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .searchInput {
+        width: 300px;
+        padding: 12px;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      .buttonContainer {
+        display: flex;
+        gap: 15px;
+      }
+
+      .loginButton,
+      .signupButton {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        padding: 12px 25px;
+        border: 2px solid black;
+        background-color: lightgray;
+        color: black;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .signupButton {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        const goToSignUp = () => {
+          window.location.href = "./signup.html";
+        };
+
+        return (
+          <div className="mainContainer">
+            <h1>Titan Strength and Performance</h1>
+
+            <input
+              className="searchInput"
+              type="text"
+              placeholder="Enter username"
+            />
+
+            <div className="buttonContainer">
+              <button className="loginButton" type="button">
+                Enter
+              </button>
+
+              <button
+                className="signupButton"
+                type="button"
+                onClick={goToSignUp}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      const rootElement = document.getElementById("root");
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
