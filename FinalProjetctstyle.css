@@ -1,3 +1,22 @@
 .Navbar {
     background-color: black;
 }
+body {
+        margin: 0;
+      }
+
+      .mainContainer {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .searchInput {
+        width: 300px;
+        padding: 12px;
+        font-size: 18px;
+        text-align: center;
+      }
