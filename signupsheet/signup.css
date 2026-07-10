@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.Text {
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.textinput {
+  width: 500px;
+  height: 25px;
+  padding: 12px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.textinput2 {
+  width: 500px;
+  height: 25px;
+  padding: 12px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+.signupbutton {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.border {
+  border: 10px solid rgb(4, 30, 71);
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  margin-bottom: 250px;
+}
