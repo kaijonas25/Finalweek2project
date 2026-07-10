@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Titan Strength and Performance</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+
+    <style>
+     body {
+        margin: 0;
+      }
+
+      .mainContainer {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .searchInput {
+        width: 300px;
+        padding: 12px;
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function App() {
+        return (
+          <div className="mainContainer">
+            <h1>Titan Strength and Performance</h1>
+
+            <input
+              className="searchInput"
+              type="text"
+              placeholder="Enter username"
+            />
+
+            <button>Enter</button>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
