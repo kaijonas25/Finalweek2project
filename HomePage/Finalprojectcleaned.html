@@ -20,7 +20,7 @@
           window.location.href = "../signupsheet/signup.html";
         };
 
-        const logIn = (event) => {
+        const logIn = async (event) => {
           event.preventDefault();
 
           const username = document.querySelector(".searchInput").value.trim();
@@ -31,38 +31,23 @@
             return;
           }
 
-          // Developer reset: remove all account data for this app.
-          if (username === "developer-reset" && password === "admin-overide") {
-            localStorage.removeItem("titanAccounts");
-            localStorage.removeItem("titanCurrentUser");
-            alert("Titan account storage has been reset.");
-            window.location.href = "../signupsheet/signup.html";
-            return;
-          }
-
-          let accounts = [];
-
           try {
-            accounts = JSON.parse(localStorage.getItem("titanAccounts")) || [];
+            const response = await fetch("../signupsheet/account.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ action: "login", username, password })
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+              throw new Error(result.message || "Invalid username or password.");
+            }
+
+            window.location.href = "../Homeonpage.html/Homeonpage.html";
           } catch (error) {
-            alert("The saved account information could not be read.");
-            return;
+            alert(error.message || "The login service is unavailable.");
           }
-
-          const validAccount = accounts.find(function(account) {
-            return account.username.toLowerCase() === username.toLowerCase() &&
-              account.password === password;
-          });
-
-          if (!validAccount) {
-            alert("Invalid username or password.");
-            return;
-          }
-
-          localStorage.setItem("titanCurrentUser", validAccount.username);
-          window.location.href = "../Homeonpage.html/Homeonpage.html";
         };
-
         return (
           <div className="border">
           <form className="mainContainer" onSubmit={logIn}>

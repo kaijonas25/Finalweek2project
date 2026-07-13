@@ -1,79 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="signup.css" />
     <title>Titan Signup</title>
   </head>
-
   <body>
-    <div class="border">
-      <h1 class="Text">Create an Account</h1>
-
-      <input
-        class="textinput"
-        type="text"
-        placeholder="Enter username"
-      />
-
-      <h2 class="Text">Create a Password</h2>
-
-      <input
-        class="textinput2"
-        type="password"
-        placeholder="Enter password"
-      />
-
-      <button
-        class="signupbutton"
-        type="button"
-        onclick="signup()"
-      >
-  
-    </div>
-
+    <main class="signup-card">
+      <h1>Create an Account</h1>
+      <form id="signupForm">
+        <div class="form-grid">
+          <label class="full-width">Full name
+            <input name="fullName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required />
+          </label>
+          <label>Username
+            <input name="username" type="text" placeholder="Choose a username" autocomplete="username" maxlength="50" required />
+          </label>
+          <label>Age
+            <input name="age" type="number" placeholder="Enter your age" min="13" max="120" required />
+          </label>
+          <label>Email
+            <input name="email" type="email" placeholder="you@example.com" autocomplete="email" maxlength="150" required />
+          </label>
+          <label>Phone number
+            <input name="phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" maxlength="30" required />
+          </label>
+          <label>Password
+            <input name="password" type="password" placeholder="Create a password" autocomplete="new-password" minlength="8" required />
+          </label>
+          <label>Confirm password
+            <input name="confirmPassword" type="password" placeholder="Enter it again" autocomplete="new-password" minlength="8" required />
+          </label>
+        </div>
+        <p id="formMessage" class="form-message" role="alert" aria-live="polite"></p>
+        <div class="button-row">
+          <button class="secondary-button" type="button" onclick="goToLogin()">Back to Login</button>
+          <button class="signup-button" type="submit">Create Account</button>
+        </div>
+      </form>
+    </main>
     <script>
-        const goTohomeUp = () => {
-          window.location.href = "../Finalprojectcleaned.html";
-        };
+      const form = document.getElementById("signupForm");
+      const message = document.getElementById("formMessage");
+      const submitButton = form.querySelector('[type="submit"]');
 
-      function signup() {
-        var username = document.querySelector(".textinput").value.trim();
-        var password = document.querySelector(".textinput2").value;
-
-        if (!username || !password) {
-          alert("Please enter both username and password.");
-          return;
-        }
-
-        // Load previously saved accounts.
-        var accounts = JSON.parse(localStorage.getItem("titanAccounts")) || [];
-
-        // Check whether the username already exists.
-        var usernameExists = accounts.some(function(account) {
-          return account.username.toLowerCase() === username.toLowerCase();
-        });
-
-        if (usernameExists) {
-          alert("That username is already taken.");
-          return;
-        }
-
-        // Add the new account.
-        accounts.push({
-          username: username,
-          password: password
-        });
-
-        // Save the updated account list.
-        localStorage.setItem("titanAccounts", JSON.stringify(accounts));
-
-        alert("Account created for " + username);
-
-        // Clear the input boxes.
-        document.querySelector(".textinput").value = "";
-        document.querySelector(".textinput2").value = "";
+      function goToLogin() {
+        window.location.href = "../HomePage/Finalprojectcleaned.html";
       }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        message.textContent = "";
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        if (data.password !== data.confirmPassword) {
+          message.textContent = "The passwords do not match.";
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Creating...";
+
+        try {
+          const response = await fetch("account.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "signup", ...data })
+          });
+          const result = await response.json();
+          if (!response.ok || !result.success) {
+            throw new Error(result.message || "The account could not be created.");
+          }
+
+          message.classList.add("success");
+          message.textContent = "Account created! Taking you to the home page...";
+          form.reset();
+          setTimeout(function () {
+            window.location.href = "../Homeonpage.html/Homeonpage.html";
+          }, 800);
+        } catch (error) {
+          message.classList.remove("success");
+          message.textContent = error.message;
+          submitButton.disabled = false;
+          submitButton.textContent = "Create Account";
+        }
+      });
     </script>
   </body>
 </html>
