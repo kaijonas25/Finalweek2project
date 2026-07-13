@@ -8,7 +8,6 @@ body {
   align-items: center;
 
   gap: 20px;
-  background-color: rgb(227, 226, 226);
 }
 
 .Text {
@@ -39,25 +38,10 @@ body {
   font-size: 16px;
   margin-bottom: 5px;
   cursor: pointer;
-  justify-self: center;
-  border-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  transition: transform 0.3s ease;
-  
 }
 .border {
-  border: 10px solid rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
+  border: 10px solid rgb(4, 30, 71);
+  background-color: rgb(0, 0, 0);
   padding: 10px;
   margin-bottom: 250px;
-  border-radius: 20px;
-}
-.head {
-  
-  text-align: center;
-  font-size: 50px;
-}
-.signupbutton:hover{
-  transform: scale(1.05);
-
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="signup.css" />
@@ -8,24 +7,7 @@
   </head>
 
   <body>
-    <form id="userForm" action="submit.php" method="POST">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name"><br><br>
-
-      <label for="age">Age</label><br>
-      <input type="number" id="age"><br><br>
-
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email"><br><br>
-
-      <label for="phone">Phone:</label><br>
-      <input type="tel" id="phone" name="phone"><br><br>
-
-      <button type="submit">Send</button>
-    </form>
-
     <div class="border">
-      <h1 class = head> Sign Up</h1>
       <h1 class="Text">Create an Account</h1>
 
       <input
@@ -83,9 +65,11 @@
         // Save the updated account list.
         localStorage.setItem("titanAccounts", JSON.stringify(accounts));
 
-        // Remember the signed-in user and go to the home page.
-        localStorage.setItem("titanCurrentUser", username);
-        window.location.href = "../Homeonpage.html/Homeonpage.html";
+        alert("Account created for " + username);
+
+        // Clear the input boxes.
+        document.querySelector(".textinput").value = "";
+        document.querySelector(".textinput2").value = "";
       }
     </script>
   </body>

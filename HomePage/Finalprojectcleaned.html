@@ -31,15 +31,6 @@
             return;
           }
 
-          // Developer reset: remove all account data for this app.
-          if (username === "developer-reset" && password === "admin-overide") {
-            localStorage.removeItem("titanAccounts");
-            localStorage.removeItem("titanCurrentUser");
-            alert("Titan account storage has been reset.");
-            window.location.href = "../signupsheet/signup.html";
-            return;
-          }
-
           let accounts = [];
 
           try {

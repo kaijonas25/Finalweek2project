@@ -87,12 +87,12 @@ button {
         
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        justify-self: center;
+        
+        align-items: center;
         border-radius: 30px ;
-        box-shadow: black 10px ;
+        box-shadow: inset 5px ;
         background-color: white;
-        margin-top: 15%;
+        
             
       }
 .header {
