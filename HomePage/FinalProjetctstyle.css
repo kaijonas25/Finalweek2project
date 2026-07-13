@@ -15,7 +15,8 @@ body {
         
       }
 
-      .searchInput {
+      .searchInput,
+      .passwordInput {
         width: 300px;
         padding: 12px;
         font-size: 18px;

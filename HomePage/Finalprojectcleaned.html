@@ -17,22 +17,64 @@
     <script type="text/babel">
       function App() {
         const goToSignUp = () => {
-          window.location.href = "./signup.html";
+          window.location.href = "../signupsheet/signup.html";
+        };
+
+        const logIn = (event) => {
+          event.preventDefault();
+
+          const username = document.querySelector(".searchInput").value.trim();
+          const password = document.querySelector(".passwordInput").value;
+
+          if (!username || !password) {
+            alert("Please enter both username and password.");
+            return;
+          }
+
+          let accounts = [];
+
+          try {
+            accounts = JSON.parse(localStorage.getItem("titanAccounts")) || [];
+          } catch (error) {
+            alert("The saved account information could not be read.");
+            return;
+          }
+
+          const validAccount = accounts.find(function(account) {
+            return account.username.toLowerCase() === username.toLowerCase() &&
+              account.password === password;
+          });
+
+          if (!validAccount) {
+            alert("Invalid username or password.");
+            return;
+          }
+
+          localStorage.setItem("titanCurrentUser", validAccount.username);
+          window.location.href = "../Homeonpage.html/Homeonpage.html";
         };
 
         return (
-          <div class="border">
-          <div className="mainContainer">
-            <h1 class="header">Titan Strength and Performance</h1>
+          <div className="border">
+          <form className="mainContainer" onSubmit={logIn}>
+            <h1 className="header">Titan Strength and Performance</h1>
 
             <input
               className="searchInput"
               type="text"
               placeholder="Enter username"
+              autoComplete="username"
+            />
+
+            <input
+              className="passwordInput"
+              type="password"
+              placeholder="Enter password"
+              autoComplete="current-password"
             />
 
             <div className="buttonContainer">
-              <button className="loginButton" type="button">
+              <button className="loginButton" type="submit">
                 Enter
               </button>
 
@@ -44,7 +86,7 @@
                 Sign Up
               </button>
             </div>
-          </div>
+          </form>
           </div>
         );
       }

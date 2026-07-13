@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="signup.css" />
-    
-        <title class="Text">Titan signup</title>
-    </head>
-    <body>
-        <div class="border">
-        <h1 class="Text">Create an Account</h1>
-        <input class="textinput" type="text" placeholder="Enter username"/>
-        <h2 class="Text">Create a Password</h2>
-        <input class="textinput2" type="password" placeholder="Enter password"/>
-        <button class="signupbutton" type="button">Sign Up</button>
-        </div>
-    </body>
+    <title>Titan Signup</title>
+  </head>
+
+  <body>
+    <div class="border">
+      <h1 class="Text">Create an Account</h1>
+
+      <input
+        class="textinput"
+        type="text"
+        placeholder="Enter username"
+      />
+
+      <h2 class="Text">Create a Password</h2>
+
+      <input
+        class="textinput2"
+        type="password"
+        placeholder="Enter password"
+      />
+
+      <button
+        class="signupbutton"
+        type="button"
+        onclick="signup()"
+      >
+        Sign Up
+      </button>
+    </div>
+
+    <script>
+      function signup() {
+        var username = document.querySelector(".textinput").value.trim();
+        var password = document.querySelector(".textinput2").value;
+
+        if (!username || !password) {
+          alert("Please enter both username and password.");
+          return;
+        }
+
+        // Load previously saved accounts.
+        var accounts = JSON.parse(localStorage.getItem("titanAccounts")) || [];
+
+        // Check whether the username already exists.
+        var usernameExists = accounts.some(function(account) {
+          return account.username.toLowerCase() === username.toLowerCase();
+        });
+
+        if (usernameExists) {
+          alert("That username is already taken.");
+          return;
+        }
+
+        // Add the new account.
+        accounts.push({
+          username: username,
+          password: password
+        });
+
+        // Save the updated account list.
+        localStorage.setItem("titanAccounts", JSON.stringify(accounts));
+
+        alert("Account created for " + username);
+
+        // Clear the input boxes.
+        document.querySelector(".textinput").value = "";
+        document.querySelector(".textinput2").value = "";
+      }
+    </script>
+  </body>
 </html>
