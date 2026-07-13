@@ -1,6 +1,7 @@
 body {
         margin: 0;
         font-family: 'Times New Roman', Times, serif;
+        background-color: rgb(228, 226, 226);
       }
       
 
@@ -82,13 +83,14 @@ button {
       .border {
         height: 350px;
         width: 650px;
-        border: 3px solid;
+        
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 30px ;
         box-shadow: inset 5px ;
+        background-color: white;
         
             
       }
