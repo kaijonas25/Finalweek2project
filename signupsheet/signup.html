@@ -65,11 +65,9 @@
         // Save the updated account list.
         localStorage.setItem("titanAccounts", JSON.stringify(accounts));
 
-        alert("Account created for " + username);
-
-        // Clear the input boxes.
-        document.querySelector(".textinput").value = "";
-        document.querySelector(".textinput2").value = "";
+        // Remember the signed-in user and go to the home page.
+        localStorage.setItem("titanCurrentUser", username);
+        window.location.href = "../Homeonpage.html/Homeonpage.html";
       }
     </script>
   </body>
