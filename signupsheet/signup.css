@@ -42,6 +42,8 @@ body {
   justify-self: center;
   border-color: rgb(255, 255, 255);
   border-radius: 20px;
+  transition: ease;
+  
 }
 .border {
   border: 10px solid rgb(255, 255, 255);
@@ -54,4 +56,8 @@ body {
   
   text-align: center;
   font-size: 50px;
+}
+.signupbutton:hover{
+  transform: scale(1.05);
+
 }
