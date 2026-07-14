@@ -46,7 +46,7 @@
       const submitButton = form.querySelector('[type="submit"]');
 
       function goToLogin() {
-        window.location.href = "../HomePage/Finalprojectcleaned.html";
+        window.location.href = "../LandingPage/Finalprojectcleaned.html";
       }
 
       form.addEventListener("submit", async function (event) {
@@ -77,7 +77,7 @@
           message.textContent = "Account created! Taking you to the home page...";
           form.reset();
           setTimeout(function () {
-            window.location.href = "../Homeonpage.html/Homeonpage.html";
+            window.location.href = "../Homeonpage/Homeonpage.html";
           }, 800);
         } catch (error) {
           message.classList.remove("success");
