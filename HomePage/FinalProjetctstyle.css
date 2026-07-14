@@ -1,0 +1,100 @@
+body {
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+        background-color: rgb(228, 226, 226);
+      }
+      
+
+      .mainContainer {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        
+        
+      }
+
+      .searchInput,
+      .passwordInput {
+        width: 300px;
+        padding: 12px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      body {
+        margin: 0;
+      }
+
+.buttonContainer {
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ body {
+        margin: 0;
+      }
+
+      .mainContainer {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+
+      
+      .buttonContainer {
+        display: flex;
+        gap: 15px;
+      }
+
+      .loginButton,
+      .signupButton {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        padding: 3px 20px;
+        border: 2px solid black;
+        background-color: lightgray;
+        color: black;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+
+      .signupButton {
+        background-color: rgb(127, 127, 185);
+        color: white;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .border {
+        height: 350px;
+        width: 650px;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        border-radius: 30px ;
+        box-shadow: black 10px ;
+        background-color: white;
+        margin-top: 15%;
+            
+      }
+.header {
+  text-align: center;
+}
