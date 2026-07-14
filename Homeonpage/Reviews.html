@@ -1,13 +1,73 @@
-
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="reviews.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Titan Strength and Performance</title>
 </head>
+<body>
 
-<h1>Testimonials from Athletes</h1>
-<p>"Damon Okafor got me into rugby---and led me to win 5 championships." - Danny K, professional Rugby player</p>
-<p>"I've grown so much as a baseball player, which is obviously shown with my 3 MVP awards." - George R, MLB 3 time MVP</p>
+    <h1>Testimonials from Athletes</h1>
+
+    <!-- Wrapper for the entire carousel -->
+    <div class="testimonial-carousel">
+        
+        <!-- Navigation Buttons -->
+        <button class="carousel-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+        <button class="carousel-btn next-btn" aria-label="Next Slide">&#10095;</button>
+
+        <!-- The scrollable horizontal row -->
+        <div class="testimonial-track">
+            
+            <!-- Slide 1 -->
+            <div class="testimonial-card">
+                <p>"Damon Okafor got me into rugby—and led me to win 5 championships."</p>
+                <cite>- Danny K, professional Rugby player</cite>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-card">
+                <p>"I've grown so much as a baseball player, which is obviously shown with my 3 MVP awards."</p>
+                <cite>- George R, MLB 3-time MVP</cite>
+            </div>
+
+            <!-- Slide 3 (Added a third one to show off the looping/scrolling!) -->
+            <div class="testimonial-card">
+                <p>"The mental grit I developed here is just as powerful as the physical gains."</p>
+                <cite>- Sarah T, Olympic Weightlifter</cite>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const track = document.querySelector('.testimonial-track');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        // Scroll to the next card
+        nextBtn.addEventListener('click', () => {
+            const slideWidth = track.clientWidth;
+            // If we are at the very end, loop back to the start
+            if (track.scrollLeft + slideWidth >= track.scrollWidth - 5) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            }
+        });
+
+        // Scroll to the previous card
+        prevBtn.addEventListener('click', () => {
+            const slideWidth = track.clientWidth;
+            // If we are at the very beginning, loop to the end
+            if (track.scrollLeft <= 5) {
+                track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+            }
+        });
+    </script>
+
+</body>
+</html>
