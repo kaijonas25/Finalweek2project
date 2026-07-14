@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="home.css">
+  <meta charset="UTF-8">
+  <title>Trainer Bio & Program Breakdown</title>
+  
+  
+</head>
+<body>
+
+  <h1>Trainer Bio</h1>
+  <h2>Coach Damon Okafor:</h2>
+  <ul>
+    <li>was happy in the haze of a drunken hour</li>
+    <li>heaven knew he was miserable now</li>
+    <li>he was looking for a job and he found a job</li>
+  </ul>
+  
+  <h2>Coach Goblinstein</h2>
+  <ul>
+    <li>was happy in the haze of a drunken hour</li>
+    <li>heaven knew he was miserable now</li>
+    <li>he was looking for a job and he found a job</li>
+  </ul>
+
+  <h1>Program Breakdown</h1>
+  <h2>weightlifting</h2>
+  <p>Continuous weight training for building strength.</p>
+  
+  <h2>speed drills</h2>
+  <p>for the speedy athletes who want to stay the best.</p>
+  
+  <h2>sport-specific conditioning</h2>
+  <p>Football, soccer, basketball, baseball all supported.</p>
+
+
+  <button class="chat-button" onclick="toggleChat()">
+    💬
+  </button>
+
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <img src="images/TechBot.png" alt="Assistant" onerror="this.style.display='none'">
+      <div>
+        <strong>AI Assistant</strong><br>
+        <small>Ask me anything!</small>
+      </div>
+    </div>
+    
+    <div class="chat-messages" id="chatLog">
+      <div class="message-row ai">
+        <img class="avatar" src="images/TechBot.png" alt="AI" onerror="this.style.display='none'">
+        <div class="message-bubble">
+          Hi! How can I help you today?
+        </div>
+      </div>
+    </div>
+    
+    <form class="chat-input-area" onsubmit="sendMessage(event)">
+      <input
+        id="userInput"
+        type="text"
+        placeholder="Type your message..."
+        autocomplete="off"
+      >
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+
+  <script>
+    // Handles opening and closing the window panel
+    function toggleChat() {
+      const chatBox = document.getElementById('chatBox');
+      if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+        chatBox.style.display = 'flex';
+      } else {
+        chatBox.style.display = 'none';
+      }
+    }
+
+    // Handles sending messages and triggering auto-reply
+    function sendMessage(event) {
+      event.preventDefault(); // Prevents the page from refreshing on form submit
+
+      const userInput = document.getElementById('userInput');
+      const chatLog = document.getElementById('chatLog');
+      const messageText = userInput.value.trim();
+
+      if (messageText === '') return;
+
+      // 1. Append User Message Bubble
+      const userRow = document.createElement('div');
+      userRow.className = 'message-row user';
+      userRow.innerHTML = `<div class="message-bubble">${messageText}</div>`;
+      chatLog.appendChild(userRow);
+
+      // Clear the text bar instantly
+      userInput.value = '';
+
+      // Force view window to scroll down
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      // 2. Mock AI System Response after a short pause
+      setTimeout(() => {
+        const aiRow = document.createElement('div');
+        aiRow.className = 'message-row ai';
+        aiRow.innerHTML = `
+          <img class="avatar" src="images/TechBot.png" alt="AI" onerror="this.style.display='none'">
+          <div class="message-bubble">
+            Thanks for reaching out! Regarding "${messageText}", one of our trainers will get back to you shortly.
+          </div>
+        `;
+        chatLog.appendChild(aiRow);
+        
+        // Final scroll update
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
