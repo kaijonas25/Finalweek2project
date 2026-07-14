@@ -1,46 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <button onclick="window.location.href='Homeonpage.html'">Click Me</button>
   <link rel="stylesheet" href="home.css">
   <meta charset="UTF-8">
-  <title>Trainer Bio & Program Breakdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Titan Strength and Performance</title>
   
   
 </head>
 <body>
 
-  <h1>Trainer Bio</h1>
-  <h2>Coach Damon Okafor:</h2>
-  <ul>
-    <li>was happy in the haze of a drunken hour</li>
-    <li>heaven knew he was miserable now</li>
-    <li>he was looking for a job and he found a job</li>
-  </ul>
-  
-  <h2>Coach Goblinstein</h2>
-  <ul>
-    <li>was happy in the haze of a drunken hour</li>
-    <li>heaven knew he was miserable now</li>
-    <li>he was looking for a job and he found a job</li>
-  </ul>
+  <main class="home-card">
+    <header class="hero">
+      <p class="eyebrow">Titan Strength and Performance</p>
+      <h1>Train Stronger. Move Faster.</h1>
+      <p class="intro">Meet your coaches and explore programs designed to build strength, speed, and sport-specific performance.</p>
+    </header>
+    <section aria-labelledby="trainers-heading">
+      <h2 id="trainers-heading" class="section-title">Trainer Bios</h2>
+      <div class="content-grid">
+        <article class="info-card">
+          <h3>Coach Damon Okafor</h3>
+          <ul>
+            <li>Was happy in the haze of a drunken hour</li>
+            <li>Heaven knew he was miserable now</li>
+            <li>He was looking for a job and he found a job</li>
+          </ul>
+        </article>
+        <article class="info-card">
+          <h3>Coach Goblinstein</h3>
+          <ul>
+            <li>Was happy in the haze of a drunken hour</li>
+            <li>Heaven knew he was miserable now</li>
+            <li>He was looking for a job and he found a job</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+    <section aria-labelledby="programs-heading">
+      <h2 id="programs-heading" class="section-title">Program Breakdown</h2>
+      <div class="program-grid">
+        <article class="program-card"><span class="program-number">01</span><h3>Weightlifting</h3><p>Continuous weight training for building strength.</p></article>
+        <article class="program-card"><span class="program-number">02</span><h3>Speed Drills</h3><p>For speedy athletes who want to stay at their best.</p></article>
+        <article class="program-card"><span class="program-number">03</span><h3>Sport-Specific Conditioning</h3><p>Football, soccer, basketball, and baseball are all supported.</p></article>
+      </div>
+    </section>
+  </main>
 
-  <h1>Program Breakdown</h1>
-  <h2>weightlifting</h2>
-  <p>Continuous weight training for building strength.</p>
-  
-  <h2>speed drills</h2>
-  <p>for the speedy athletes who want to stay the best.</p>
-  
-  <h2>sport-specific conditioning</h2>
-  <p>Football, soccer, basketball, baseball all supported.</p>
 
-
-  <button class="chat-button" onclick="toggleChat()">
+  <button class="chat-button" type="button" onclick="toggleChat()" aria-label="Open AI assistant">
     💬
   </button>
 
-  <div class="chat-box" id="chatBox">
+  <aside class="chat-box" id="chatBox" aria-label="AI assistant">
     <div class="chat-header">
       <img src="images/TechBot.png" alt="Assistant" onerror="this.style.display='none'">
       <div>
@@ -67,7 +79,7 @@
       >
       <button type="submit">Send</button>
     </form>
-  </div>
+  </aside>
 
 
   <script>
@@ -144,13 +156,13 @@
 
     catch (error) {
 
-      document.getElementById("thinkingMessage").remove();
+      document.getElementById("thinkingMessage")?.remove();
 
       chatLog.innerHTML += `
         <div class="message-row ai">
           <img class="avatar" src="images/TechBot.png" alt="AI">
           <div class="message-bubble">
-            Network error. Check your API key.
+            Network error. Check your API connection.
           </div>
         </div>
       `;

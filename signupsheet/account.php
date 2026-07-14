@@ -1,8 +1,27 @@
 <?php
 declare(strict_types=1);
 
-session_start();
 header("Content-Type: application/json; charset=utf-8");
+
+// Allow this local XAMPP API to be called from localhost or VS Code Live Server.
+$requestOrigin = $_SERVER["HTTP_ORIGIN"] ?? "";
+$isLocalOrigin = $requestOrigin === "null"
+    || preg_match('#^https?://(localhost|127\.0\.0\.1)(:\d+)?$#', $requestOrigin) === 1;
+
+if ($isLocalOrigin) {
+    header("Access-Control-Allow-Origin: " . $requestOrigin);
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Headers: Content-Type");
+    header("Access-Control-Allow-Methods: POST, OPTIONS");
+    header("Vary: Origin");
+}
+
+if (($_SERVER["REQUEST_METHOD"] ?? "GET") === "OPTIONS") {
+    http_response_code($isLocalOrigin ? 204 : 403);
+    exit;
+}
+
+session_start();
 
 function respond(int $status, array $body): never
 {
