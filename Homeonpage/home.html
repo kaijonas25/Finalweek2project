@@ -10,13 +10,13 @@
 </head>
 <body>
 
-  <main class="home-card">
+  <main class="home-card" id="home">
     <header class="hero">
       <p class="eyebrow">Titan Strength and Performance</p>
       <h1>Train Stronger. Move Faster.</h1>
       <p class="intro">Meet your coaches and explore programs designed to build strength, speed, and sport-specific performance.</p>
     </header>
-    <section aria-labelledby="trainers-heading">
+    <section id="booking" aria-labelledby="trainers-heading">
       <h2 id="trainers-heading" class="section-title">Trainer Bios</h2>
       <div class="content-grid">
         <article class="info-card">
@@ -37,7 +37,7 @@
         </article>
       </div>
     </section>
-    <section aria-labelledby="programs-heading">
+    <section id="programs" aria-labelledby="programs-heading">
       <h2 id="programs-heading" class="section-title">Program Breakdown</h2>
       <div class="program-grid">
         <article class="program-card"><span class="program-number">01</span><h3>Weightlifting</h3><p>Continuous weight training for building strength.</p></article>
@@ -171,10 +171,23 @@
   }
   </script>
 
-   <nav class="bottom-nav">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+  <nav class="bottom-nav" aria-label="Homepage navigation">
+    <a class="nav-item nav-home" href="#home">
+      <span class="nav-icon" aria-hidden="true">⌂</span>
+      <span>Home</span>
+    </a>
+    <a class="nav-item" href="#booking">
+      <span class="nav-icon" aria-hidden="true">◆</span>
+      <span>Booking</span>
+    </a>
+    <a class="nav-item" href="#programs">
+      <span class="nav-icon" aria-hidden="true">★</span>
+      <span>Programs</span>
+    </a>
+    <button class="nav-item" type="button" onclick="toggleChat()">
+      <span class="nav-icon" aria-hidden="true">●</span>
+      <span>Chat</span>
+    </button>
   </nav>
 
 </body>
