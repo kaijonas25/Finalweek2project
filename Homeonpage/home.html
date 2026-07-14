@@ -82,7 +82,7 @@
     }
 
     // Handles sending messages and triggering auto-reply
-    function sendMessage(event) {
+    async function sendMessage(event) {
       event.preventDefault(); // Prevents the page from refreshing on form submit
     
       const userInput = document.getElementById('userInput');
@@ -120,7 +120,71 @@
           { role: "user", content: input }
         ]
       }; 
+
+       try {
+
+    const response = await fetch(
+      "https://api.openai.com/v1/chat/completions",
+
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
+        },
+
+        body: JSON.stringify(payload)
       }
+    );
+
+    const data = await response.json();
+
+    document.getElementById("thinkingMessage").remove();
+
+    if (data.error) {
+
+      chatLog.innerHTML += `
+        <div class="message-row ai">
+          <img class="avatar" src="images/TechBot.png" alt="AI">
+          <div class="message-bubble">
+            Error: ${data.error.message}
+          </div>
+        </div>
+      `;
+
+      return;
+
+    }
+
+    const reply = data.choices[0].message.content.trim();
+
+    chatLog.innerHTML += `
+      <div class="message-row ai">
+        <img class="avatar" src="images/TechBot.png" alt="AI">
+        <div class="message-bubble">${reply}</div>
+      </div>
+    `;
+
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+  }
+
+  catch (error) {
+
+    document.getElementById("thinkingMessage").remove();
+
+    chatLog.innerHTML += `
+      <div class="message-row ai">
+        <img class="avatar" src="images/TechBot.png" alt="AI">
+        <div class="message-bubble">
+          Network error. Check your API key.
+        </div>
+      </div>
+    `;
+
+  }
+  }
   </script>
 
 </body>
