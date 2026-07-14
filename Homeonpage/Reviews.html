@@ -10,46 +10,90 @@
 
     <h1>Testimonials from Athletes</h1>
 
-    <!-- Wrapper for the entire carousel -->
-    <div class="testimonial-carousel">
+    <!-- 3x3 Grid Wrapper starts here -->
+    <div class="carousel-grid-container">
         
-        <!-- Navigation Buttons -->
-        <button class="carousel-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
-        <button class="carousel-btn next-btn" aria-label="Next Slide">&#10095;</button>
-
-        <!-- The scrollable horizontal row -->
-        <div class="testimonial-track">
-            
-            <!-- Slide 1 -->
-            <div class="testimonial-card">
-                <p>"Damon Okafor got me into rugby—and led me to win 5 championships."</p>
-                <cite>- Danny K, professional Rugby player</cite>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="testimonial-card">
-                <p>"I've grown so much as a baseball player, which is obviously shown with my 3 MVP awards."</p>
-                <cite>- George R, MLB 3-time MVP</cite>
-            </div>
-
-            <!-- Slide 3 (Added a third one to show off the looping/scrolling!) -->
-            <div class="testimonial-card">
-                <p>"The mental grit I developed here is just as powerful as the physical gains."</p>
-                <cite>- Sarah T, Olympic Weightlifter</cite>
-            </div>
-
+        <!-- 3 Left Quotes -->
+        <div class="grid-quote quote-l1">
+            <p>"No citizen has a right to be an amateur in the matter of physical training."</p>
+            <cite>— Socrates</cite>
         </div>
+        <div class="grid-quote quote-l2">
+            <p>"Strength does not come from winning. Your struggles develop your strengths."</p>
+            <cite>— Arnold Schwarzenegger</cite>
+        </div>
+        <div class="grid-quote quote-l3">
+            <p>"The only place where success comes before work is in the dictionary."</p>
+            <cite>— Vidal Sassoon</cite>
+        </div>
+
+        <!-- 1 Top Quote -->
+        <div class="grid-quote quote-top">
+            <p>"What hurts today makes you stronger tomorrow."</p>
+            <cite>— Jay Cutler</cite>
+        </div>
+
+        <!-- CENTER: Carousel -->
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" aria-label="Previous Slide">&#10094;</button>
+            <button class="carousel-btn next-btn" aria-label="Next Slide">&#10095;</button>
+            
+            <div class="testimonial-track">
+                
+                <!-- Slide 1 -->
+                <div class="testimonial-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQLlMzSKkJuq23ct6vMRO3BmaUT3fSTqTdqXd9iE2JA&s=10" alt="Danny K" class="profile-img">
+                    <p>"Damon Okafor got me into rugby---and led me to win 5 championships."</p>
+                    <cite>- Danny K, professional Rugby player</cite>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="testimonial-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmU0YDrO70tYLg3ZNx4rsvxVA55dVuYjm5bgjGCfctOw&s=10" alt="white baseball" class="profile-img">
+                    <p>"I've grown so much as a baseball player, which is obviously shown with my 3 MVP awards."</p>
+                    <cite>- George R, MLB 3-time MVP</cite>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="testimonial-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbCShpBXWXRcoD88RqXcS7CYXJVA_uhHCklKO9svCm5A&s" alt="Sarah T" class="profile-img">
+                    <p>"The mental grit I developed here is just as powerful as the physical gains."</p>
+                    <cite>- Sarah T, Olympic Weightlifter</cite>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- 1 Bottom Quote -->
+        <div class="grid-quote quote-bottom">
+            <p>"Hard work beats talent when talent doesn't work hard."</p>
+            <cite>— Tim Notke</cite>
+        </div>
+
+        <!-- 3 Right Quotes -->
+        <div class="grid-quote quote-r1">
+            <p>"The clock is ticking. Are you becoming the person you want to be?"</p>
+            <cite>— Greg Plitt</cite>
+        </div>
+        <div class="grid-quote quote-r2">
+            <p>"Suffering is temporary. Pride is forever."</p>
+            <cite>— Unknown</cite>
+        </div>
+        <div class="grid-quote quote-r3">
+            <p>"Success isn't always about greatness. It's about consistency."</p>
+            <cite>— Dwayne Johnson</cite>
+        </div>
+
     </div>
+    <!-- Grid Wrapper ends here -->
 
     <script>
         const track = document.querySelector('.testimonial-track');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
 
-        // Scroll to the next card
         nextBtn.addEventListener('click', () => {
             const slideWidth = track.clientWidth;
-            // If we are at the very end, loop back to the start
             if (track.scrollLeft + slideWidth >= track.scrollWidth - 5) {
                 track.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
@@ -57,10 +101,8 @@
             }
         });
 
-        // Scroll to the previous card
         prevBtn.addEventListener('click', () => {
             const slideWidth = track.clientWidth;
-            // If we are at the very beginning, loop to the end
             if (track.scrollLeft <= 5) {
                 track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
             } else {
