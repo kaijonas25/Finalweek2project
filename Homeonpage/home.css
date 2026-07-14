@@ -87,3 +87,33 @@ section + section { margin-top: 38px; }
   .chat-box { right: 16px; bottom: 92px; }
   .chat-button { right: 16px; bottom: 16px; }
 }
+
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      /* Add padding so content doesn't hide behind the fixed bar */
+      padding-bottom: 60px; 
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      display: flex;
+      justify-content: space-around;
+      z-index: 1000;
+    }
+
+    .bottom-nav a {
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .bottom-nav a:hover {
+      background-color: #555;
+    }
