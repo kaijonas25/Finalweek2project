@@ -20,7 +20,7 @@ if (empty($messageText)) {
 }
 
 // Keep your API key secure on the server side
-$apiKey = "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"; 
+$apiKey = "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"; 
 
 $payload = [
     "model" => "gpt-4o-mini",
