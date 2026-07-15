@@ -20,7 +20,23 @@ if (empty($messageText)) {
 }
 
 // Keep your API key secure on the server side
-$apiKey = "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"; 
+$envPath = "C:/xampp/Secrets/openai.env";
+if (!is_readable($envPath)) {
+    echo json_encode(["error" => ["message" => "API key file not found"]]);
+    exit;
+}
+$env = parse_ini_file($envPath, false, INI_SCANNER_RAW);
+$apiKey = $env['OPENAI_API_KEY'] ?? '';
+
+if (empty($apiKey)) {
+    http_response_code(500);
+    echo json_encode(["error" => ["message" => "API key not set"]]);
+    exit;
+}
+
+
+
+
 
 $payload = [
     "model" => "gpt-4o-mini",
