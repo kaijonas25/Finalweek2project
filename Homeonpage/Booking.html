@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.protocol === "file:") {
+      window.location.replace("http://localhost/Finalweek2project/Homeonpage/Booking.html");
+    }
+  </script>
+  <link rel="stylesheet" href="Booking.css">
+  <title>Book a Training Session | Titan Strength</title>
+</head>
+<body class="auth-pending">
+  <main class="booking-shell">
+    <header class="booking-hero">
+      <a class="back-link" href="home.php">← Back to home</a>
+      <p class="eyebrow">Titan Strength and Performance</p>
+      <h1>Book Your Training Session</h1>
+      <p class="intro">Choose your program, coach, and preferred training time.</p>
+    </header>
+
+    <div class="booking-layout">
+      <section class="booking-panel" aria-labelledby="booking-form-title">
+        <div class="section-heading">
+          <span class="step-number">01</span>
+          <div>
+            <h2 id="booking-form-title">Session details</h2>
+            <p>All fields marked with an asterisk are required.</p>
+          </div>
+        </div>
+
+        <form id="bookingForm">
+          <div class="form-grid">
+            <label>
+              <span>Program *</span>
+              <select id="program" name="program" required>
+                <option value="">Select a program</option>
+                <option value="Weightlifting">Weightlifting</option>
+                <option value="Speed Drills">Speed Drills</option>
+                <option value="Sport-Specific Conditioning">Sport-Specific Conditioning</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Trainer *</span>
+              <select id="trainer" name="trainer" required>
+                <option value="">Select a trainer</option>
+                <option value="Coach Damon Okafor">Coach Damon Okafor</option>
+                <option value="Coach Goblinstein">Coach Goblinstein</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Date *</span>
+              <input id="bookingDate" name="bookingDate" type="date" required>
+            </label>
+
+            <label>
+              <span>Time *</span>
+              <select id="bookingTime" name="bookingTime" required>
+                <option value="">Select a time</option>
+                <option value="06:00">6:00 AM</option>
+                <option value="07:30">7:30 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:30">1:30 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:30">4:30 PM</option>
+                <option value="18:00">6:00 PM</option>
+              </select>
+            </label>
+
+            <label class="full-width">
+              <span>Training notes <small>(optional)</small></span>
+              <textarea id="notes" name="notes" maxlength="500" rows="5" placeholder="Tell your coach about goals, injuries, or anything else they should know."></textarea>
+            </label>
+          </div>
+
+          <button id="submitButton" class="submit-button" type="submit">Confirm booking</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="booking-info" aria-labelledby="before-title">
+        <span class="step-number light">02</span>
+        <h2 id="before-title">Before you train</h2>
+        <ul>
+          <li>Arrive 10 minutes before your session.</li>
+          <li>Bring water and comfortable training clothes.</li>
+          <li>Tell your coach about any injuries or limitations.</li>
+        </ul>
+        <div class="info-note">
+          <strong>Need to change your booking?</strong>
+          <p>Contact your coach before your scheduled session.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const loginPage = "../LandingPage/Finalprojectcleaned.html";
+    const form = document.getElementById("bookingForm");
+    const submitButton = document.getElementById("submitButton");
+    const formStatus = document.getElementById("formStatus");
+    const dateInput = document.getElementById("bookingDate");
+
+    function localDateString(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    const today = new Date();
+    const latestDate = new Date(today);
+    latestDate.setDate(latestDate.getDate() + 90);
+    dateInput.min = localDateString(today);
+    dateInput.max = localDateString(latestDate);
+
+    async function requireLogin() {
+      try {
+        const response = await fetch("../signupsheet/session.php", {
+          credentials: "same-origin",
+          cache: "no-store"
+        });
+        const session = await response.json();
+
+        if (!response.ok || !session.authenticated) {
+          window.location.replace(loginPage);
+          return;
+        }
+
+        document.body.classList.remove("auth-pending");
+      } catch (error) {
+        window.location.replace(loginPage);
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      formStatus.className = "form-status";
+      formStatus.textContent = "Saving your booking...";
+      submitButton.disabled = true;
+
+      const payload = {
+        program: document.getElementById("program").value,
+        trainer: document.getElementById("trainer").value,
+        bookingDate: dateInput.value,
+        bookingTime: document.getElementById("bookingTime").value,
+        notes: document.getElementById("notes").value.trim()
+      };
+
+      try {
+        const response = await fetch("booking.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+
+        if (response.status === 401) {
+          window.location.replace(loginPage);
+          return;
+        }
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "The booking could not be saved.");
+        }
+
+        form.reset();
+        formStatus.className = "form-status success";
+        formStatus.textContent = result.message;
+      } catch (error) {
+        formStatus.className = "form-status error";
+        formStatus.textContent = error.message || "The booking service is unavailable.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    requireLogin();
+  </script>
+</body>
+</html>
