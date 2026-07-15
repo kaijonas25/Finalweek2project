@@ -94,7 +94,7 @@ section + section { margin-top: 38px; }
   bottom: 18px;
   z-index: 1100;
   display: grid;
-  grid-template-columns: repeat(4, minmax(74px, 1fr));
+  grid-template-columns: repeat(5, minmax(68px, 1fr));
   width: min(620px, calc(100vw - 32px));
   padding: 8px;
   border: 4px solid #041e47;
@@ -146,7 +146,7 @@ section + section { margin-top: 38px; }
   .bottom-nav {
     bottom: 10px;
     width: calc(100vw - 20px);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .nav-item {
