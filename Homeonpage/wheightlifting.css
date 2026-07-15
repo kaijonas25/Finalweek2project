@@ -34,7 +34,8 @@ body{
   width: fit-content;
   margin: 30px auto 0;
   padding: 10px 20px;
-  border: 2px solid ;
+  border-left: 2px solid ;
+  border-right: 2px solid ;
   border-radius: 20px;
   background: rgb(255, 255, 255);
   border-color: #4c4c91;
