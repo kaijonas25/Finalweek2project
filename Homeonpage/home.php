@@ -1,6 +1,17 @@
+<?php
+declare(strict_types=1);
+
+session_start();
+
+if (!isset($_SESSION["titanCurrentUser"])) {
+    header("Location: ../LandingPage/Finalprojectcleaned.html");
+    exit;
+}
+
+header("Cache-Control: no-store");
+?>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
   <link rel="stylesheet" href="home.css">
   <meta charset="UTF-8">
@@ -57,7 +68,7 @@
       <img src="images/TechBot.png" alt="Assistant" onerror="this.style.display='none'">
       <div>
         <strong>Gym Bro</strong><br>
-        <small>Gym advice for the gym bros.</small>
+        <small>Ask me anything!</small>
       </div>
     </div>
     
@@ -65,7 +76,7 @@
       <div class="message-row ai">
         <img class="avatar" src="images/TechBot.png" alt="AI" onerror="this.style.display='none'">
         <div class="message-bubble">
-          Hey! Let me crack?
+          Hi! How can I help you today?
         </div>
       </div>
     </div>
@@ -90,20 +101,109 @@
         chatBox.style.display = 'flex';
       } else {
         chatBox.style.display = 'none';
-=======
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script>
-      if (window.location.protocol === "file:") {
-        window.location.replace("http://localhost/Finalweek2project/Homeonpage/home.php");
->>>>>>> 7259ce173319a8a7f2262db1d0783e0461683b95
       }
-    </script>
-    <meta http-equiv="refresh" content="0; url=home.php" />
-    <title>Titan Home</title>
-  </head>
-  <body>
-    <p>Opening <a href="home.php">Titan Home</a>...</p>
-  </body>
+    }
+
+    // Handles sending messages and triggering auto-reply
+    async function sendMessage(event) {
+      event.preventDefault(); // Prevents the page from refreshing on form submit
+    
+      const userInput = document.getElementById('userInput');
+      const chatLog = document.getElementById('chatLog');
+      const messageText = userInput.value.trim();
+    
+      if (messageText === '') return;
+
+      // 1. Append User Message Bubble
+      const userRow = document.createElement('div');
+      userRow.className = 'message-row user';
+      userRow.innerHTML = `<div class="message-bubble">${messageText}</div>`;
+      chatLog.appendChild(userRow);
+
+      // Clear the text bar instantly
+      userInput.value = '';
+
+      chatLog.innerHTML += `
+        <div class="message-row ai" id="thinkingMessage">
+          <img class="avatar" src="images/TechBot.png" alt="AI">
+          <div class="message-bubble thinking">Thinking...</div>
+        </div>
+      `;
+
+      chatLog.scrollTop = chatLog.scrollHeight;
+
+      try {
+  // Call your local XAMPP PHP backend instead
+  const response = await fetch("chat.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: messageText }) 
+  });
+
+  const data = await response.json();
+  document.getElementById("thinkingMessage").remove();
+
+  if (data.error) {
+    chatLog.innerHTML += `
+      <div class="message-row ai">
+        <img class="avatar" src="images/TechBot.png" alt="AI">
+        <div class="message-bubble">Error: ${data.error.message}</div>
+      </div>`;
+    return;
+  }
+
+  const reply = data.choices[0].message.content.trim();
+  chatLog.innerHTML += `
+    <div class="message-row ai">
+      <img class="avatar" src="images/TechBot.png" alt="AI">
+      <div class="message-bubble">${reply}</div>
+    </div>`;
+
+  chatLog.scrollTop = chatLog.scrollHeight;
+
+}
+
+    catch (error) {
+
+      document.getElementById("thinkingMessage")?.remove();
+
+      chatLog.innerHTML += `
+        <div class="message-row ai">
+          <img class="avatar" src="images/TechBot.png" alt="AI">
+          <div class="message-bubble">
+            Network error. Check your API connection.
+          </div>
+        </div>
+      `;
+
+    }
+  }
+  </script>
+
+  <nav class="bottom-nav" aria-label="Homepage navigation">
+    <a class="nav-item nav-home" href="#home">
+      <span class="nav-icon" aria-hidden="true">⌂</span>
+      <span>Home</span>
+    </a>
+    <a class="nav-item" href="#booking">
+      <span class="nav-icon" aria-hidden="true">◆</span>
+      <span>Booking</span>
+    </a>
+    <a class="nav-item" href="#programs">
+      <span class="nav-icon" aria-hidden="true">★</span>
+      <span>Programs</span>
+    </a>
+    <a class="nav-item" href="Reviews.html">
+      <span class="nav-icon" aria-hidden="true">☆</span>
+      <span>Reviews</span>
+    </a>
+    <button class="nav-item" type="button" onclick="toggleChat()">
+      <span class="nav-icon" aria-hidden="true">●</span>
+      <span>Chat</span>
+    </button>
+  </nav>
+
+</body>
 </html>
