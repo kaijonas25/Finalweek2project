@@ -1,0 +1,70 @@
+/* Shared Titan signed-in profile widget */
+.account-widget {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+  padding: 18px 18px 14px;
+  overflow: hidden;
+  border: 5px solid #041e47;
+  border-radius: 20px;
+  color: #10213d;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fc 100%);
+  box-shadow:
+    0 12px 28px rgba(4, 30, 71, 0.2),
+    inset 0 0 0 2px rgba(76, 76, 145, 0.12);
+}
+
+.account-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: #4c4c91;
+}
+
+.account-avatar {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  border: 4px solid #4c4c91;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 10px rgba(4, 30, 71, 0.18);
+  object-fit: cover;
+}
+
+.account-details {
+  display: grid;
+  min-width: 0;
+  padding-left: 12px;
+  border-left: 2px solid #c8cfda;
+}
+
+.account-details span {
+  color: #4c4c91;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.account-details strong {
+  overflow-wrap: anywhere;
+  color: #041e47;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+@media (max-width: 460px) {
+  .account-widget {
+    position: static;
+    width: calc(100% - 32px);
+    margin: 16px auto 12px;
+  }
+}
