@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <a class="back-link" href="home.html">Back to Titan Home</a>
+      <a class="back-link" href="home.php">Back to Titan Home</a>
     </main>
 
     <script>

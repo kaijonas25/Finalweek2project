@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     if (window.location.protocol === "file:") {
-      window.location.replace("http://localhost/Finalweek2project/Homeonpage/Booking.html");
+      window.location.replace("http://localhost/Finalweek2project/Homeonpage/BookingPage.php");
     }
   </script>
   <link rel="stylesheet" href="Booking.css?v=2">
@@ -14,7 +14,7 @@
   <title>Book a Training Session | Titan Strength</title>
 </head>
 <body class="auth-pending">
-  <a class="view-bookings-button" href="viewbookings.html">
+  <a class="view-bookings-button" href="viewbookings.php">
     <span class="view-bookings-icon" aria-hidden="true">&#9638;</span>
     <span>View bookings</span>
   </a>
@@ -106,7 +106,7 @@
   </main>
 
   <script>
-    const loginPage = "../LandingPage/Finalprojectcleaned.html";
+    const loginPage = "../LandingPage/Finalprojectcleaned.php";
     const form = document.getElementById("bookingForm");
     const submitButton = document.getElementById("submitButton");
     const formStatus = document.getElementById("formStatus");

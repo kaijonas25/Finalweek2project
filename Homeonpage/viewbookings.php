@@ -11,7 +11,7 @@
 <body>
   <main class="calendar-shell">
     <header class="calendar-hero">
-      <a class="back-link" href="Booking.html">&larr; Back to booking</a>
+      <a class="back-link" href="BookingPage.php">&larr; Back to booking</a>
       <p class="eyebrow">Titan Strength and Performance</p>
       <h1>My Training Calendar</h1>
       <p id="calendarStatus" class="calendar-status" role="status" aria-live="polite">Loading your training sessions...</p>
@@ -44,7 +44,7 @@
   </main>
 
   <script>
-    const loginPage = "../LandingPage/Finalprojectcleaned.html";
+    const loginPage = "../LandingPage/Finalprojectcleaned.php";
     const calendarStatus = document.getElementById("calendarStatus");
     const calendarMonth = document.getElementById("calendarMonth");
     const calendarBody = document.getElementById("calendarBody");

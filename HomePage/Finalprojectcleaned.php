@@ -17,7 +17,7 @@
     <script type="text/babel">
       function App() {
         const goToSignUp = () => {
-          window.location.href = "../signupsheet/signup.html";
+          window.location.href = "../signupsheet/signup.php";
         };
 
         const logIn = (event) => {
@@ -36,7 +36,7 @@
             localStorage.removeItem("titanAccounts");
             localStorage.removeItem("titanCurrentUser");
             alert("Titan account storage has been reset.");
-            window.location.href = "../signupsheet/signup.html";
+            window.location.href = "../signupsheet/signup.php";
             return;
           }
 
@@ -60,8 +60,7 @@
           }
 
           localStorage.setItem("titanCurrentUser", validAccount.username);
-          window.location.href = "../Homeonpage.html/Homeonpage.html";
-        };
+            window.location.href = "../Homeonpage/Homeonpage.php";
 
         return (
           <div className="border">

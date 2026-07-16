@@ -4,7 +4,7 @@ declare(strict_types=1);
 session_start();
 
 if (!isset($_SESSION["titanCurrentUser"])) {
-    header("Location: ../LandingPage/Finalprojectcleaned.html");
+    header("Location: ../LandingPage/Finalprojectcleaned.php");
     exit;
 }
 
@@ -77,7 +77,7 @@ header("Cache-Control: no-store");
       <div class="program-grid">
         <article
           class="program-card"
-          onclick="window.location.href='wheightlifting.html'"
+          onclick="window.location.href='wheightlifting.php'"
         >
           <span class="program-number">01</span>
           <h3>Weightlifting</h3>
@@ -86,7 +86,7 @@ header("Cache-Control: no-store");
 
         <article
           class="program-card"
-          onclick="window.location.href='speed.html'"
+          onclick="window.location.href='speed.php'"
         >
           <span class="program-number">02</span>
           <h3>Speed Drills</h3>
@@ -95,7 +95,7 @@ header("Cache-Control: no-store");
 
         <article
           class="program-card"
-          onclick="window.location.href='sport.html'"
+          onclick="window.location.href='sport.php'"
         >
           <span class="program-number">03</span>
           <h3>Sport-Specific Conditioning</h3>
@@ -248,17 +248,17 @@ header("Cache-Control: no-store");
       <span>Home</span>
     </a>
 
-    <a class="nav-item" href="Booking.html">
+    <a class="nav-item" href="BookingPage.php">
       <span class="nav-icon" aria-hidden="true">◆</span>
       <span>Booking</span>
     </a>
 
-    <a class="nav-item" href="about.html">
+    <a class="nav-item" href="about.php">
       <span class="nav-icon" aria-hidden="true">★</span>
       <span>Programs</span>
     </a>
 
-    <a class="nav-item" href="Reviews.html">
+    <a class="nav-item" href="Reviews.php">
       <span class="nav-icon" aria-hidden="true">☆</span>
       <span>Reviews</span>
     </a>

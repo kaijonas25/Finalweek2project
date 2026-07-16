@@ -18,7 +18,7 @@
     <script type="text/babel">
       function App() {
         const goToSignUp = () => {
-          window.location.href = "../signupsheet/signup.html";
+          window.location.href = "../signupsheet/signup.php";
         };
 
         const logIn = async (event) => {
@@ -45,7 +45,7 @@
               throw new Error(result.message || "Invalid username or password.");
             }
 
-            window.location.href = "../Homeonpage/Homeonpage.html";
+            window.location.href = "../Homeonpage/Homeonpage.php";
           } catch (error) {
             alert(error.message || "The login service is unavailable.");
           }

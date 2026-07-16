@@ -7,6 +7,6 @@
     <script src="profile-widget.js?v=1" defer></script>
 </head>
 <body>
-    <a href="bios.html">trainer bios</a>
+    <a href="bios.php">trainer bios</a>
 </body>
 </html>
