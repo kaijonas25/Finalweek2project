@@ -191,7 +191,7 @@ header("Cache-Control: no-store");
       <span class="nav-icon" aria-hidden="true">◆</span>
       <span>Booking</span>
     </a>
-    <a class="nav-item" href="#programs">
+    <a class="nav-item" href="about.html">
       <span class="nav-icon" aria-hidden="true">★</span>
       <span>Programs</span>
     </a>
