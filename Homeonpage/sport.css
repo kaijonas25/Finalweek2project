@@ -75,3 +75,16 @@ body{
   box-shadow: 0 12px 30px rgba(4, 30, 71, 0.28);
    
 }
+.back-link {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  border: 2px solid #041e47;
+  border-radius: 10px;
+  color: white;
+  background: #4c4c91;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+}
