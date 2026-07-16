@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 120px 18px 100px;
+  color: #10213d;
+  background:
+    radial-gradient(circle at top left, rgba(76, 76, 145, 0.14), transparent 34%),
+    #e4e2e2;
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+}
+
+.calendar-shell {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 8px solid #041e47;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(4, 30, 71, 0.18);
+}
+
+.calendar-hero {
+  padding: 32px 38px;
+  border-bottom: 1px solid #d7dce4;
+  background: #f8f9fc;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #4c4c91;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #041e47;
+  text-decoration: underline;
+}
+
+.eyebrow {
+  margin: 0 0 7px;
+  color: #4c4c91;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.calendar-hero h1 {
+  margin: 0;
+  color: #041e47;
+  font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.08;
+}
+
+.calendar-status {
+  width: fit-content;
+  margin: 18px auto 0;
+  padding: 8px 14px;
+  border: 2px solid #c8cfda;
+  border-radius: 999px;
+  color: #536174;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.calendar-panel {
+  padding: 32px 38px 40px;
+}
+
+.calendar-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.calendar-toolbar h2 {
+  margin: 0;
+  color: #041e47;
+  font-size: 30px;
+  text-align: center;
+}
+
+.calendar-toolbar button {
+  width: fit-content;
+  padding: 10px 16px;
+  border: 2px solid #041e47;
+  border-radius: 12px;
+  color: #fff;
+  background: #4c4c91;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-toolbar button:last-child {
+  justify-self: end;
+}
+
+.calendar-toolbar button:hover {
+  background: #041e47;
+  transform: translateY(-1px);
+}
+
+.calendar-toolbar button:focus-visible,
+.back-link:focus-visible {
+  outline: 3px solid #7f7fb9;
+  outline-offset: 3px;
+}
+
+.calendar-scroll {
+  overflow-x: auto;
+  border: 3px solid #041e47;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.calendar-table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.calendar-table th,
+.calendar-table td {
+  padding: 10px;
+  border: 1px solid #9aa9bd;
+  vertical-align: top;
+}
+
+.calendar-table th {
+  color: #fff;
+  background: #041e47;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.calendar-table td {
+  height: 130px;
+  background: #fff;
+}
+
+.calendar-table td:hover {
+  background: #f8f9fc;
+}
+
+.calendar-day-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 30px;
+  margin-bottom: 8px;
+  color: #041e47;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.calendar-day-number.has-booking::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #2677d9;
+  box-shadow: 0 0 0 1px #2677d9;
+}
+
+.calendar-table ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calendar-table li {
+  padding: 8px;
+  border-left: 4px solid #4c4c91;
+  border-radius: 7px;
+  color: #10213d;
+  background: #eef0f7;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.calendar-table li p {
+  margin: 6px 0 0;
+  color: #536174;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  body {
+    padding-inline: 12px;
+  }
+
+  .calendar-shell {
+    border-width: 5px;
+  }
+
+  .calendar-hero,
+  .calendar-panel {
+    padding: 26px 20px;
+  }
+
+  .calendar-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calendar-toolbar h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 460px) {
+  body {
+    padding: 16px 10px 80px;
+  }
+
+  .calendar-hero h1 {
+    font-size: 34px;
+  }
+
+  .calendar-panel {
+    padding-inline: 12px;
+  }
+
+  .calendar-toolbar {
+    gap: 10px;
+  }
+
+  .calendar-toolbar button {
+    width: 100%;
+    padding-inline: 10px;
+  }
+}

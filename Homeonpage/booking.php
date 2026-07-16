@@ -5,6 +5,7 @@ header("Content-Type: application/json; charset=utf-8");
 header("Cache-Control: no-store");
 
 session_start();
+require_once __DIR__ . "/booking-database.php";
 
 function respond(int $status, array $body): never
 {
@@ -76,47 +77,28 @@ if ($dateObject < $today || $dateObject > $latestDate) {
     respond(422, ["success" => false, "message" => "Bookings must be within the next 90 days."]);
 }
 
-mysqli_report(MYSQLI_REPORT_OFF);
-$conn = new mysqli("localhost", "root", "");
-if ($conn->connect_error) {
-    respond(500, ["success" => false, "message" => "The booking database is unavailable."]);
-}
-$conn->set_charset("utf8mb4");
-
-if (!$conn->query(
-    "CREATE DATABASE IF NOT EXISTS user_data CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
-) || !$conn->select_db("user_data")) {
-    respond(500, ["success" => false, "message" => "The booking database could not be prepared."]);
+try {
+    $conn = connectBookingDatabase();
+    ensureBookingsSchema($conn);
+    $accountId = currentTitanAccountId($conn);
+} catch (RuntimeException $error) {
+    respond(500, ["success" => false, "message" => $error->getMessage()]);
 }
 
-$createTable = <<<SQL
-CREATE TABLE IF NOT EXISTS bookings (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    program VARCHAR(80) NOT NULL,
-    trainer VARCHAR(100) NOT NULL,
-    booking_date DATE NOT NULL,
-    booking_time TIME NOT NULL,
-    notes VARCHAR(500) NOT NULL DEFAULT '',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    INDEX bookings_username_idx (username),
-    UNIQUE KEY unique_trainer_slot (trainer, booking_date, booking_time)
-)
-SQL;
-
-if (!$conn->query($createTable)) {
-    respond(500, ["success" => false, "message" => "The bookings table could not be prepared."]);
+if ($accountId === null) {
+    $conn->close();
+    respond(401, ["success" => false, "message" => "Please log in before booking a session."]);
 }
 
 $insert = $conn->prepare(
-    "INSERT INTO bookings (username, program, trainer, booking_date, booking_time, notes)
-     VALUES (?, ?, ?, ?, ?, ?)"
+    "INSERT INTO bookings (account_id, username, program, trainer, booking_date, booking_time, notes)
+     VALUES (?, ?, ?, ?, ?, ?, ?)"
 );
 if (!$insert) {
     respond(500, ["success" => false, "message" => "The booking could not be prepared."]);
 }
 
-$insert->bind_param("ssssss", $username, $program, $trainer, $bookingDate, $bookingTime, $notes);
+$insert->bind_param("issssss", $accountId, $username, $program, $trainer, $bookingDate, $bookingTime, $notes);
 if (!$insert->execute()) {
     $isDuplicateSlot = $insert->errno === 1062;
     $insert->close();
