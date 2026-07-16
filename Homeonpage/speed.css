@@ -22,7 +22,7 @@ body{
   padding: 10px 20px;
   border-bottom: 2px solid ;
   border-radius: 10px;
-  background: rgb(255, 255, 255);
+  background: rgb(249, 249, 249);
   border-color: #4c4c91;
   color: #041e47;
   font-size: 17px;
@@ -72,5 +72,6 @@ body{
   padding-bottom: 70px;
   padding-left: 50px;
   padding-right: 50px;
+  box-shadow: 0 12px 30px rgba(4, 30, 71, 0.28);
    
 }
